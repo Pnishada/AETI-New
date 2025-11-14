@@ -21,34 +21,32 @@ const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50">
+    <div className="w-full min-h-screen bg-gradient-to-r from-red-800 via-red-700 to-red-900 ">
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 px-6 py-20 items-center">
+      <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 px-6 py-16 items-center">
+        {/* Left: Text */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            Discover <span className="text-red-700">AETI</span>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-snug">
+            Discover <span className="text-gray-50">AETI</span>
           </h1>
-          <p className="mt-6 text-lg text-gray-600">
-            The Automobile Engineering Training Institute (AETI) a National
-            level Training Institute for automobile engineering was established
-            by a grant aid from the Government of Japan at a cost of LKR 500
-            million. The Institute was ceremonially declared open on 28th
-            October 1989 by his Excellency then President of Sri Lanka along
-            with his Excellency then Ambassador of Japan. AETI functions under
-            purview of National Apprentice and Industrial Training Authority
-            (NAITA) of the Ministry of Education, Higher Education and
-            Vocational Education.
+          <p className="mt-4 text-base md:text-lg text-white leading-relaxed">
+            The Automobile Engineering Training Institute (AETI) is a national-level
+            Training Institute for automobile engineering, established by grant aid
+            from the Government of Japan at a cost of LKR 500 million. The Institute
+            was ceremonially declared open on 28th October 1989. AETI functions under
+            the National Apprentice & Industrial Training Authority (NAITA) of the Ministry
+            of Education, Higher Education and Vocational Education.
           </p>
         </motion.div>
 
-        {/* Image Slider */}
+        {/* Right: Image Slider */}
         <motion.div
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
@@ -64,26 +62,27 @@ const AboutPage: React.FC = () => {
               <img
                 src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80"
                 alt="Training"
-                className="rounded-2xl"
+                className="rounded-2xl w-full h-64 md:h-80 object-cover"
               />
             </SwiperSlide>
             <SwiperSlide>
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80"
                 alt="Students"
-                className="rounded-2xl"
+                className="rounded-2xl w-full h-64 md:h-80 object-cover"
               />
             </SwiperSlide>
             <SwiperSlide>
               <img
                 src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1000&q=80"
                 alt="Industry"
-                className="rounded-2xl"
+                className="rounded-2xl w-full h-64 md:h-80 object-cover"
               />
             </SwiperSlide>
           </Swiper>
         </motion.div>
       </section>
+
 
       {/* Who We Are Section */}
       <section className="bg-white py-16">
@@ -114,51 +113,53 @@ const AboutPage: React.FC = () => {
           </ul>
 
           <p className="mt-6 text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            All automotive courses are formulated in consultation with industry in order to ensure that the trainees meet the skilled manpower requirements of the Automobile Industry, which provide, on-the-job training (OJT) facility for trainees completing the Institutional Training component at the institute. The employment rate of those completing training from the Institute is almost 100%. AETI also provides skill upgrading training with career advancement opportunities for those are in employment. 
+            All automotive courses are formulated in consultation with industry to ensure trainees
+            meet skilled manpower requirements. OJT is provided for students completing institutional
+            training. Employment rate is nearly 100%. Skill upgrading and career advancement opportunities
+            are also provided.
           </p>
           <p className="mt-2 text-gray-600 leading-relaxed max-w-3xl mx-auto">
-             The institute was relocated to its new premises due to New Kelani Bridge project  in 2017 and Japan International Co-operation Agency (JICA) has kindly offered assistance to re-locate AETI at a cost of over LKR 1500 million.
-
-
-
+            The institute was relocated to its new premises due to New Kelani Bridge project in 2017,
+            with assistance from JICA at a cost of over LKR 1500 million.
           </p>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gradient-to-r from-red-800 via-red-700 to-red-900 text-white py-24">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 px-6">
-          <Card>
+          <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
             <CardContent>
               <h2 className="text-2xl font-semibold text-gray-900">
                 Our Mission
               </h2>
               <p className="mt-4 text-gray-600">
-                To be an institution of excellence in providing training in automobile and related trades to cater for the needs of the developing industries.
-
+                To be an institution of excellence in providing training in automobile
+                and related trades to meet industry needs.
               </p>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
             <CardContent>
               <h2 className="text-2xl font-semibold text-gray-900">
                 Our Vision
               </h2>
               <p className="mt-4 text-gray-600">
-               To be an excellent training provider in the field of Automobile Engineering within the region of Asia.
+                To be a leading training provider in Automobile Engineering within Asia.
               </p>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      {/* Why Choose NAITA */}
+
+      {/* Why Choose AETI */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900">Why Choose AETI</h2>
           <p className="mt-4 text-gray-600">
-            We provide government-certified training, industry partnerships,Overseas scholarships 
+            We provide government-certified training, industry partnerships, and overseas scholarships.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -183,6 +184,7 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
+
     </div>
   );
 };
