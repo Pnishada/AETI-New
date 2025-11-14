@@ -1,232 +1,124 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-
+import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
-import Automobile_Electrician from "@/components/assets/Automobile Electrician.jpg"
-import Automobile_Machinist from "@/components/assets/Automobile Machinist.jpg"
-import Automobile_Mechanic from "@/components/assets/Automobile Mechanic.jpg"
-import Automobile_Painter from "@/components/assets/Automobile Painter.jpg"
+
+import { Button } from "@/components/ui/button";
+import Automobile_Electrician from "@/components/assets/Automobile Electrician.jpg";
+import Automobile_Machinist from "@/components/assets/Automobile Machinist.jpg";
+import Automobile_Mechanic from "@/components/assets/Automobile Mechanic.jpg";
+import Automobile_Painter from "@/components/assets/Automobile Painter.jpg";
+import ApplyForm from "./ui/applyonlineForm";
 
 export default function HeroSlider() {
-  // === Register Form state ===
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-    education: "",
-    birthday: "",
-    certificate: null as File | null,
-    message: "",
-  });
+  const [showForm, setShowForm] = useState(false);
+  const [particles, setParticles] = useState<{ x: number; y: number; size: number; opacity: number; delay: number }[]>([]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { id, value, files } = e.target as HTMLInputElement;
-    if (id === "certificate" && files) {
-      setFormData((prev) => ({ ...prev, certificate: files[0] }));
-    } else {
-      setFormData((prev) => ({ ...prev, [id]: value }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form Submitted ✅", formData);
-    alert("Application submitted successfully ✅");
-    setFormData({
-      name: "",
-      email: "",
-      address: "",
-      phone: "",
-      education: "",
-      birthday: "",
-      certificate: null,
-      message: "",
-    });
-    setIsFormOpen(false);
-  };
-
-  // === Background slides ===
   const slides = [
     Automobile_Electrician,
     Automobile_Machinist,
     Automobile_Mechanic,
-    Automobile_Painter
-
+    Automobile_Painter,
   ];
 
+  // Generate particles
+  useEffect(() => {
+    const arr = Array.from({ length: 50 }).map(() => ({
+      x: Math.random() * 100, // percentage for left
+      y: Math.random() * 70, // percentage for top
+      size: Math.random() * 3 + 1,
+      opacity: Math.random() * 0.5 + 0.2,
+      delay: Math.random() * 3,
+    }));
+    setParticles(arr);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-white">
-      {/* === Background Slider === */}
+    <section className="relative h-[70vh] w-full overflow-hidden">
+      {/* Slider */}
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        loop={true}
+        loop
         pagination={{ clickable: true }}
         className="absolute inset-0 w-full h-full"
       >
-        {slides.map((img, i) => (
-          <SwiperSlide key={i}>
+        {slides.map((img, idx) => (
+          <SwiperSlide key={idx}>
             <div
-              className="w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url(${img})` }}
+              className="w-full h-full relative bg-cover bg-center"
+              style={{ backgroundImage: `url(${img})` }} // dynamic URL is okay inline
             >
-              <div className="w-full h-full bg-black/60"></div>
+              <div className="absolute inset-0 bg-black/50" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* === Overlay Text + Modern Apply Button === */}
-      <div className="relative z-10 text-center px-4 flex flex-col items-center justify-center">
-        <h1 className="text-5xl md:text-7xl font-extrabold leading-tight drop-shadow-lg">
-          Founded for Skill. <br /> Built for Industry.
+      {/* Particles */}
+      {particles.map((p, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-white animate-float"
+          style={{
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
+            opacity: p.opacity,
+            animationDelay: `${p.delay}s`,
+          }}
+        />
+      ))}
+
+      {/* Overlay Text */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 h-[70vh]">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg leading-tight animate-fade-in">
+          Founded for <span className="text-red-500">Skill</span>. <br /> Built for{" "}
+          <span className="text-red-500">Industry</span>.
         </h1>
-        <p className="mt-4 text-2xl md:text-3xl font-medium text-gray-200 drop-shadow-md max-w-2xl">
-          Automobile Engineering Training Institute (AETI)
+        <p className="mt-3 md:mt-4 text-base md:text-lg text-gray-200 max-w-3xl drop-shadow-md animate-fade-in delay-200">
+          Automobile Engineering Training Institute (AETI) – Hands-on training for
+          future-ready professionals.
         </p>
+
+        {/* Glassmorphism Apply Button */}
         <Button
-          onClick={() => setIsFormOpen(true)}
-          className="mt-10 px-12 py-5 text-lg font-semibold rounded-full bg-red-600 hover:bg-red-500 transition-transform duration-300 shadow-xl transform hover:-translate-y-1 hover:scale-105"
+          onClick={() => setShowForm(true)}
+          className="mt-6 px-10 md:px-12 py-3 md:py-3 text-lg md:text-xl font-semibold rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white shadow-lg transition-all duration-300
+                     hover:bg-white/30 hover:scale-105 hover:shadow-2xl active:scale-95"
         >
           Apply Online
         </Button>
       </div>
 
-      {/* === Advanced Register Form Popup === */}
-      <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
-        <DialogContent className="sm:max-w-lg rounded-3xl bg-white p-6 text-black overflow-y-auto max-h-[90vh]">
-          <DialogHeader>
-            <DialogTitle>Advanced Registration Form</DialogTitle>
-            <DialogDescription>
-              Fill in your details and we’ll contact you soon.
-            </DialogDescription>
-          </DialogHeader>
+      {/* Apply Form Modal */}
+      {showForm && <ApplyForm onClose={() => setShowForm(false)} />}
 
-          <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
-            <div>
-              <Label htmlFor="name">Full Name</Label>
-              <Input
-                id="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your full name"
-                required
-              />
-            </div>
+      {/* Tailwind Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+          animation: float 6s infinite ease-in-out;
+        }
 
-            <div>
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="address">Address</Label>
-              <Input
-                id="address"
-                value={formData.address}
-                onChange={handleChange}
-                placeholder="Enter your address"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="phone">Phone Number</Label>
-              <Input
-                id="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Enter your phone number"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="education">Educational Results (O/L or A/L)</Label>
-              <Input
-                id="education"
-                value={formData.education}
-                onChange={handleChange}
-                placeholder="e.g., O/L - 6C, 3S | A/L - 2B, 1C"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="birthday">Birthday</Label>
-              <Input
-                id="birthday"
-                type="date"
-                value={formData.birthday}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="certificate">Certificate Attachment</Label>
-              <Input
-                id="certificate"
-                type="file"
-                accept=".jpg,.jpeg,.png,.pdf"
-                onChange={handleChange}
-                required
-              />
-              {formData.certificate && (
-                <p className="text-sm text-gray-600 mt-1">
-                  Selected: {formData.certificate.name}
-                </p>
-              )}
-            </div>
-
-            <div>
-              <Label htmlFor="message">Message</Label>
-              <Textarea
-                id="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Any specific requests?"
-              />
-            </div>
-
-            <DialogFooter>
-              <Button
-                type="submit"
-                className="bg-red-600 hover:bg-red-500 text-white w-full rounded-xl font-semibold py-3 transition-transform duration-300 transform hover:-translate-y-1"
-              >
-                Submit Application
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+        @keyframes fade-in {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 1s forwards;
+        }
+        .animate-fade-in.delay-200 {
+          animation-delay: 0.2s;
+        }
+      `}</style>
     </section>
   );
 }
