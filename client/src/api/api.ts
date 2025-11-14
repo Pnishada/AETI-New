@@ -42,6 +42,14 @@ export interface GalleryItem {
   uploaded_at: string;
 }
 
+export interface AcademicItem {
+  id: number;
+  title: string;
+  description: string;
+  file?: string | null; 
+  created_at?: string;
+}
+
 export interface Course {
   id: number;
   name: string;
@@ -150,4 +158,15 @@ export const api = {
 
   // Dynamic Contact Details
   getContactDetails: (): Promise<ContactDetails[]> => getRequest<ContactDetails[]>(`${BASE_URL}/contact-details/`),
+
+  // Academic Items
+  getAcademicItems: (): Promise<AcademicItem[]> => getRequest(`${BASE_URL}/academics/`),
+  getAcademicItemById: (id: number): Promise<AcademicItem> =>
+    getRequest(`${BASE_URL}/academics/${id}/`),
+  postAcademicItem: (data: FormData): Promise<AcademicItem> =>
+    postRequest(`${BASE_URL}/academics/`, data, true),
+  putAcademicItem: (id: number, data: FormData): Promise<AcademicItem> =>
+    putRequest(`${BASE_URL}/academics/${id}/`, data, true),
+  deleteAcademicItem: (id: number): Promise<void> =>
+    deleteRequest(`${BASE_URL}/academics/${id}/`),
 };

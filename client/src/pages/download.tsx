@@ -16,21 +16,37 @@ export default function DownloadPage() {
   const [downloads, setDownloads] = useState<DownloadItem[]>([]);
   const [loading, setLoading] = useState(true);
 
-useEffect(() => {
-  const fetchDownloads = async () => {
+  useEffect(() => {
+    const fetchDownloads = async () => {
+      try {
+        const data = await api.getDownloads();
+        setDownloads(data);
+      } catch (error) {
+        console.error("Failed to fetch downloads:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDownloads();
+  }, []);
+
+  const downloadFile = async (fileUrl: string) => {
     try {
-      const data = await api.getDownloads(); 
-      setDownloads(data);
-    } catch (error) {
-      console.error("Failed to fetch downloads:", error);
-    } finally {
-      setLoading(false);
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileUrl.split("/").pop() || "document.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download failed:", err);
     }
   };
-
-  fetchDownloads();
-}, []);
-
 
   if (loading) {
     return (
@@ -43,38 +59,48 @@ useEffect(() => {
   return (
     <main className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-[#8B1E1E] mb-4 text-center">
-          Downloads
-        </h1>
-        <p className="text-center text-gray-700 mb-12">
-          Download official forms, brochures, and other documents for students and applicants.
-        </p>
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-[#8B1E1E] mb-3">Downloads</h1>
+          <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+            Access official forms, brochures, and documents for students and applicants. Click download to save files directly to your device.
+          </p>
+        </div>
 
+        {/* Downloads Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {downloads.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow hover:-translate-y-1 transform"
+              className="group relative flex flex-col p-6 rounded-3xl bg-gradient-to-b from-white/80 to-white/50 backdrop-blur-md shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-500"
             >
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="p-3 rounded-full bg-[#8B1E1E]/10 text-[#8B1E1E]">
+              {/* Icon & Title */}
+              <div className="flex items-center space-x-3 mb-4">
+                <div className="p-3 rounded-full bg-[#8B1E1E]/20 text-[#8B1E1E] group-hover:bg-[#8B1E1E]/30 transition-colors duration-300">
                   <Download className="w-6 h-6" />
                 </div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                  {item.title}
-                </h2>
+                <h2 className="text-lg font-semibold text-gray-900 truncate">{item.title}</h2>
               </div>
-              <p className="text-gray-600 mb-6">{item.description}</p>
 
-              {/* Download Link */}
-              <a
-                href={item.file}
-                download
-                className="w-full bg-[#8B1E1E] hover:bg-[#6F1616] text-white px-4 py-2 rounded-lg shadow-md font-medium flex items-center justify-center space-x-2 transition-colors"
+              {/* Description */}
+              <p className="text-gray-700 mb-6 line-clamp-5">{item.description}</p>
+
+              {/* Download Button */}
+              <button
+                onClick={() => downloadFile(item.file)}
+                className="mt-auto w-full bg-gradient-to-r from-[#8B1E1E] to-[#6F1616] hover:from-[#6F1616] hover:to-[#5A1111] text-white px-4 py-3 rounded-xl shadow-md font-semibold flex items-center justify-center space-x-2 transition-all duration-300"
               >
                 <Download className="w-4 h-4" />
                 <span>Download</span>
-              </a>
+              </button>
+
+              {/* Upload Date */}
+              <p className="text-xs text-gray-400 mt-3 text-right">
+                Uploaded: {new Date(item.uploaded_at).toLocaleDateString()}
+              </p>
+
+              {/* Subtle hover overlay */}
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#8B1E1E]/10 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none"></div>
             </div>
           ))}
         </div>

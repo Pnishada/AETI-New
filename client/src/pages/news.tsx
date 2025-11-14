@@ -166,11 +166,11 @@ export default function NewsPage() {
           </div>
 
           {/* Load More Button */}
-          <div className="text-center mt-8">
+          {/* <div className="text-center mt-8">
             <button className="bg-[#B22222] hover:bg-[#8B0000] text-white px-6 py-3 rounded-full shadow transition">
               Load More
             </button>
-          </div>
+          </div> */}
         </section>
       </div>
     </>
