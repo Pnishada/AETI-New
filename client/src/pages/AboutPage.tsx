@@ -21,8 +21,7 @@ const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-r from-red-800 via-red-700 to-red-900 ">
-
+    <div className="w-full min-h-screen bg-gradient-to-r from-red-600 via-red-300 to-red-200">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 px-6 py-16 items-center">
         {/* Left: Text */}
@@ -83,7 +82,6 @@ const AboutPage: React.FC = () => {
         </motion.div>
       </section>
 
-
       {/* Who We Are Section */}
       <section className="bg-white py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
@@ -126,33 +124,37 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-gradient-to-r from-red-800 via-red-700 to-red-900 text-white py-24">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 px-6">
-          <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-            <CardContent>
-              <h2 className="text-2xl font-semibold text-gray-900">
-                Our Mission
-              </h2>
-              <p className="mt-4 text-gray-600">
+      <section className="bg-gray-200 text-black py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+          {/* Mission Card */}
+          <Card className="relative overflow-hidden shadow-2xl rounded-2xl hover:shadow-3xl transition-shadow duration-500 transform hover:-translate-y-2 hover:scale-105 bg-gradient-to-r from-red-700 to-white text-black">
+            <div className="absolute inset-0 bg-gradient-to-tr from-white to-red-700 opacity-20 animate-pulse"></div>
+            <CardContent className="relative z-10 p-6">
+              <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
+              <p className="text-black leading-relaxed">
                 To be an institution of excellence in providing training in automobile
-                and related trades to meet industry needs.
+                and related trades to meet industry needs. To be recognised as the leading 
+                and reputable provider of high-quality training and professional consultancy 
+                services that make a significant contribution to the African economy.
               </p>
             </CardContent>
           </Card>
 
-          <Card className="shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-            <CardContent>
-              <h2 className="text-2xl font-semibold text-gray-900">
-                Our Vision
-              </h2>
-              <p className="mt-4 text-gray-600">
-                To be a leading training provider in Automobile Engineering within Asia.
+          {/* Vision Card */}
+          <Card className="relative overflow-hidden shadow-2xl rounded-2xl hover:shadow-3xl transition-shadow duration-500 transform hover:-translate-y-2 hover:scale-105 bg-gradient-to-r from-red-700 to-white text-black">
+            <div className="absolute inset-0 bg-gradient-to-tr from-white to-red-700 opacity-20 animate-pulse"></div>
+            <CardContent className="relative z-10 p-6">
+              <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
+              <p className="text-black leading-relaxed">
+                To be a leading training provider in Automobile Engineering within Asia. 
+                To be recognised as the leading and reputable provider of high-quality 
+                training and professional consultancy services that make a significant 
+                contribution to the African economy.
               </p>
             </CardContent>
           </Card>
         </div>
       </section>
-
 
       {/* Why Choose AETI */}
       <section className="py-16 bg-white">
@@ -184,7 +186,6 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

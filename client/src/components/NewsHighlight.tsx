@@ -7,8 +7,9 @@ export const highlights = [
     id: 1,
     title: "New advanced workshop opened",
     excerpt: "State-of-the-art workshop for hands-on training is now operational.",
-    fullContent:
-      "AETI has inaugurated a new advanced workshop equipped with modern machinery and tools for practical hands-on training. Students can gain real-world experience and enhance their technical skills in automobile engineering.",
+    fullContent: "AETI has inaugurated a new advanced workshop equipped with modern machinery and tools for practical hands-on training.",
+    image: "/images/workshop.jpg",
+    closingDate: "31 Dec 2025",
   },
   {
     id: 2,
@@ -16,6 +17,8 @@ export const highlights = [
     excerpt: "Apply now for Advanced Diploma in Automobile Engineering for 2025 intake.",
     fullContent:
       "Enrollment for the 2025 intake is now open. Students can apply for the Advanced Diploma in Automobile Engineering and benefit from state-of-the-art training, industry internships, and certification recognized nationally and internationally.",
+    image: "/images/workshop.jpg",
+    closingDate: "31 Dec 2025",
   },
   {
     id: 3,
@@ -23,6 +26,8 @@ export const highlights = [
     excerpt: "AETI signs MoU with leading automotive manufacturers for internships.",
     fullContent:
       "AETI has signed MoUs with top automotive manufacturers to provide internship opportunities for students. This bridges the gap between academic learning and industry experience, ensuring employable skills.",
+    image: "/images/workshop.jpg",
+    closingDate: "31 Dec 2025",
   },
 ];
 
