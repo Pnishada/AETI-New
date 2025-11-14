@@ -57,7 +57,7 @@ export default function StaffPage() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Hero Section */}
-      <section className="relative h-80 flex items-center justify-center text-center text-white bg-gradient-to-b from-blue-900/80 to-blue-800/80">
+      <section className="relative h-80 flex items-center justify-center text-center text-white bg-gradient-to-r from-red-800 via-red-700 to-red-900">
         <div className="absolute inset-0 bg-[url('/hero-staff.jpg')] bg-cover bg-center opacity-30"></div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,8 +65,10 @@ export default function StaffPage() {
           transition={{ duration: 0.8 }}
           className="relative z-10 px-4"
         >
-          <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg">Our Staff</h1>
-          <p className="mt-3 text-lg md:text-xl max-w-2xl mx-auto text-gray-200 drop-shadow">
+          <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg">
+            Our Staff
+          </h1>
+          <p className="mt-3 text-lg md:text-xl max-w-2xl mx-auto text-yellow-100 drop-shadow">
             Meet the passionate educators and professionals driving excellence at AETI.
           </p>
         </motion.div>
@@ -78,7 +80,7 @@ export default function StaffPage() {
           <div key={position}>
             {groupedStaff[position]?.length ? (
               <>
-                <h2 className="text-3xl font-bold text-center mb-10 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
+                <h2 className="text-3xl font-bold text-center mb-10 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800">
                   {position}
                 </h2>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
@@ -108,7 +110,7 @@ export default function StaffPage() {
                             )}
                           </div>
 
-                          {/* Social Icons with aria-labels and titles */}
+                          {/* Social Icons */}
                           <div className="absolute bottom-5 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition flex gap-4">
                             {links.facebook && (
                               <a
@@ -117,7 +119,7 @@ export default function StaffPage() {
                                 rel="noopener noreferrer"
                                 aria-label={`${staff.name} Facebook`}
                                 title={`${staff.name} on Facebook`}
-                                className="p-2 bg-blue-600 rounded-full text-white hover:bg-blue-500 shadow"
+                                className="p-2 bg-red-600 rounded-full text-white hover:bg-red-500 shadow"
                               >
                                 <FaFacebookF />
                               </a>
@@ -129,7 +131,7 @@ export default function StaffPage() {
                                 rel="noopener noreferrer"
                                 aria-label={`${staff.name} Twitter`}
                                 title={`${staff.name} on Twitter`}
-                                className="p-2 bg-blue-400 rounded-full text-white hover:bg-blue-300 shadow"
+                                className="p-2 bg-red-500 rounded-full text-white hover:bg-red-400 shadow"
                               >
                                 <FaTwitter />
                               </a>
@@ -141,7 +143,7 @@ export default function StaffPage() {
                                 rel="noopener noreferrer"
                                 aria-label={`${staff.name} LinkedIn`}
                                 title={`${staff.name} on LinkedIn`}
-                                className="p-2 bg-blue-700 rounded-full text-white hover:bg-blue-600 shadow"
+                                className="p-2 bg-red-700 rounded-full text-white hover:bg-red-600 shadow"
                               >
                                 <FaLinkedinIn />
                               </a>
@@ -152,7 +154,7 @@ export default function StaffPage() {
                         {/* Staff Info */}
                         <div className="text-center p-6 pt-8 space-y-1">
                           <h3 className="text-xl font-semibold text-gray-800">{staff.name}</h3>
-                          <p className="text-blue-600 font-medium">{staff.role}</p>
+                          <p className="text-red-600 font-medium">{staff.role}</p>
                           <p className="text-gray-500 text-sm">{staff.department?.name || "N/A"}</p>
                           {staff.email && (
                             <p className="text-gray-600 text-sm flex items-center justify-center gap-2">
