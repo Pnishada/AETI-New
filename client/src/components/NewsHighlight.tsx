@@ -5,6 +5,34 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { api, NewsItem } from "@/api/api";
 
+// Named export: in case other modules want to access a default set of highlights
+export const highlights: NewsItem[] = [
+  {
+    id: 1,
+    title: "New advanced workshop opened",
+    date: new Date().toISOString(),
+    image: "",
+    link: "",
+    description: "State-of-the-art workshop for hands-on training is now operational.",
+  },
+  {
+    id: 2,
+    title: "2025 Enrollment open",
+    date: new Date().toISOString(),
+    image: "",
+    link: "",
+    description: "Apply now for Advanced Diploma in Automobile Engineering for 2025 intake.",
+  },
+  {
+    id: 3,
+    title: "Partnership with manufacturers",
+    date: new Date().toISOString(),
+    image: "",
+    link: "",
+    description: "AETI signs MoU with leading automotive manufacturers for internships.",
+  },
+];
+
 export default function NewsHighlight() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -16,6 +44,7 @@ export default function NewsHighlight() {
         setNews(data.slice(0, 3)); // Latest 3 highlights
       } catch (err) {
         console.error("Failed to fetch news:", err);
+        setNews(highlights); // fallback to default highlights
       } finally {
         setLoading(false);
       }
@@ -46,7 +75,6 @@ export default function NewsHighlight() {
             key={item.id}
             className="flex flex-col md:flex-row items-start md:items-center bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow p-4 gap-4 group relative overflow-hidden"
           >
-            {/* Optional thumbnail */}
             {item.image && (
               <img
                 src={item.image}
@@ -74,7 +102,6 @@ export default function NewsHighlight() {
               </div>
             </div>
 
-            {/* Optional gradient overlay on hover */}
             <div className="absolute inset-0 bg-gradient-to-tr from-red-50 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none rounded-xl"></div>
           </article>
         ))}
