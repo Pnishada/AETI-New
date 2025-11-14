@@ -1,6 +1,5 @@
 import { Switch, Route } from "wouter";
 import Layout from "@/components/Layout";
-
 import Home from "@/pages/home";
 import Gallery from "@/pages/gallery";
 import Search from "@/pages/search";
@@ -14,6 +13,7 @@ import Departments from "@/pages/depatment";
 import ContactPage from "@/pages/ContactPage";
 import CoursesPage from "@/pages/CoursesPage";
 import CoursesPreview from "@/components/CoursesPreview";
+import NewsDetail from "./pages/NewsDetail";
 
 function Router() {
   return (
@@ -28,7 +28,7 @@ function Router() {
         <Route path="/download" component={DownloadPage} />
         <Route path="/staff" component={Staff} />
         <Route path="/contact" component={ContactPage} />
-
+        <Route path="/news/:id" component={NewsDetail} /> {/* Dynamic news route */}
         {/* Courses */}
         <Route path="/courses" component={CoursesPage} />
         

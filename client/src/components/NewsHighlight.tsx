@@ -1,25 +1,32 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 
-export default function NewsHighlight() {
-  const highlights = [
-    {
-      id: 1,
-      title: "New advanced workshop opened",
-      excerpt: "State-of-the-art workshop for hands-on training is now operational.",
-    },
-    {
-      id: 2,
-      title: "2025 Enrollment open",
-      excerpt: "Apply now for Advanced Diploma in Automobile Engineering for 2025 intake.",
-    },
-    {
-      id: 3,
-      title: "Partnership with manufacturers",
-      excerpt: "AETI signs MoU with leading automotive manufacturers for internships.",
-    },
-  ];
+// Move highlights outside the function so it can be exported
+export const highlights = [
+  {
+    id: 1,
+    title: "New advanced workshop opened",
+    excerpt: "State-of-the-art workshop for hands-on training is now operational.",
+    fullContent:
+      "AETI has inaugurated a new advanced workshop equipped with modern machinery and tools for practical hands-on training. Students can gain real-world experience and enhance their technical skills in automobile engineering.",
+  },
+  {
+    id: 2,
+    title: "2025 Enrollment open",
+    excerpt: "Apply now for Advanced Diploma in Automobile Engineering for 2025 intake.",
+    fullContent:
+      "Enrollment for the 2025 intake is now open. Students can apply for the Advanced Diploma in Automobile Engineering and benefit from state-of-the-art training, industry internships, and certification recognized nationally and internationally.",
+  },
+  {
+    id: 3,
+    title: "Partnership with manufacturers",
+    excerpt: "AETI signs MoU with leading automotive manufacturers for internships.",
+    fullContent:
+      "AETI has signed MoUs with top automotive manufacturers to provide internship opportunities for students. This bridges the gap between academic learning and industry experience, ensuring employable skills.",
+  },
+];
 
+export default function NewsHighlight() {
   return (
     <section
       id="news"
