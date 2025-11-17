@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Printer, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
-import logoImg from "./assets/AETI_Logo.png"; // ✅ IMPORT LOGO
+import logoImg from "./assets/AETI_Logo.png"; // IMPORT LOGO
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               {/* Logo */}
-              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+              <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                 <img
                   src={logoImg}
                   alt="AETI Logo"

@@ -190,7 +190,7 @@ export default function Gallery() {
                   {item.file && (
                     <button
                       onClick={() => downloadFile(item.file)}
-                      className="mt-auto inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white px-4 py-2 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                      className="mt-auto inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
                     >
                       <FaFilePdf /> Download Document
                     </button>

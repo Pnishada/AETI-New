@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Link, useLocation } from "wouter";
 
 // Import the logo
-import logoImg from "./assets/AETI_Logo.png"; // <-- Make sure the path is correct
+import logoImg from "./assets/AETI_Logo.png"; 
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +42,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 hover:scale-105 transition-transform">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-shadow overflow-hidden">
+            <div className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-shadow overflow-hidden">
               <img src={logoImg} alt="AETI Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-2xl md:text-3xl font-extrabold tracking-wide font-sans">AETI</span>
