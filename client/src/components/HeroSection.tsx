@@ -77,8 +77,8 @@ export default function HeroSlider() {
       {/* Overlay Text */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 h-[70vh]">
         <h1 className="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg leading-tight animate-fade-in">
-          Founded for <span className="text-red-500">Skill</span>. <br /> Built for{" "}
-          <span className="text-red-500">Industry</span>.
+          Founded for <span className="text-blue-500">Skill</span>. <br /> Built for{" "}
+          <span className="text-blue-500">Industry</span>.
         </h1>
         <p className="mt-3 md:mt-4 text-base md:text-lg text-gray-200 max-w-3xl drop-shadow-md animate-fade-in delay-200">
           Automobile Engineering Training Institute (AETI) – Hands-on training for

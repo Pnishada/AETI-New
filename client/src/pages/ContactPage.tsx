@@ -15,26 +15,35 @@ interface FormData {
 }
 
 export default function ContactPage() {
-  const [form, setForm] = useState<FormData>({ name: "", email: "", message: "" });
+  const [form, setForm] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [contactDetails, setContactDetails] = useState<ContactDetails | null>(null);
+  const [contactDetails, setContactDetails] = useState<ContactDetails | null>(
+    null
+  );
 
   // Fetch contact details
   useEffect(() => {
-    const fetchContactDetails = async () => {
+    const fetchDetails = async () => {
       try {
         const data = await api.getContactDetails();
-        if (data.length > 0) setContactDetails(data[0]); // assume only 1 row
+        if (data.length > 0) setContactDetails(data[0]);
       } catch (err) {
         console.error("Error fetching contact details:", err);
       }
     };
-    fetchContactDetails();
+    fetchDetails();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -49,39 +58,53 @@ export default function ContactPage() {
       setSuccess(true);
       setForm({ name: "", email: "", message: "" });
     } catch (err: any) {
-      console.error("Error sending message:", err);
-      setError(err.response?.data?.detail || "Something went wrong. Please try again.");
+      setError(
+        err.response?.data?.detail ||
+          "Something went wrong. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center p-6">
-      <Card className="w-full max-w-4xl shadow-lg rounded-2xl">
+    <div className="min-h-screen bg-[#F5FAFF] flex flex-col items-center p-6">
+      <Card className="w-full max-w-5xl rounded-3xl shadow-xl border-0 bg-white/80 backdrop-blur-lg transition-all duration-300 hover:shadow-2xl">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-center text-gray-800">Contact Us</CardTitle>
-          <p className="text-center text-gray-500">We’d love to hear from you! Fill out the form below.</p>
+          <CardTitle className="text-4xl font-bold text-center text-[#1F4E79] drop-shadow-sm">
+            Contact Us
+          </CardTitle>
+          <p className="text-center text-gray-500">
+            We’d love to hear from you. Send us your message below.
+          </p>
         </CardHeader>
 
-        <CardContent className="grid md:grid-cols-2 gap-8 p-6">
-          {/* Contact Info */}
+        <CardContent className="grid md:grid-cols-2 gap-10 p-8">
+          {/* LEFT SIDE — Contact Info */}
           <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <Mail className="text-blue-600" />
-              <p className="text-gray-700">{contactDetails ? contactDetails.email : "Loading..."}</p>
+            <div className="flex items-center gap-3 bg-[#E9F3FF] p-4 rounded-xl shadow-sm">
+              <Mail className="text-[#1F7ACC]" />
+              <p className="text-gray-700 font-medium">
+                {contactDetails ? contactDetails.email : "Loading..."}
+              </p>
             </div>
-            <div className="flex items-center gap-3">
-              <Phone className="text-green-600" />
-              <p className="text-gray-700">{contactDetails ? contactDetails.phone : "Loading..."}</p>
+
+            <div className="flex items-center gap-3 bg-[#E9FDF7] p-4 rounded-xl shadow-sm">
+              <Phone className="text-[#2CA58D]" />
+              <p className="text-gray-700 font-medium">
+                {contactDetails ? contactDetails.phone : "Loading..."}
+              </p>
             </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="text-red-600" />
-              <p className="text-gray-700">{contactDetails ? contactDetails.address : "Loading..."}</p>
+
+            <div className="flex items-center gap-3 bg-[#E9FDF7] p-4 rounded-xl shadow-sm">
+              <MapPin className="text-[#B68C4A]" />
+              <p className="text-gray-700 font-medium">
+                {contactDetails ? contactDetails.address : "Loading..."}
+              </p>
             </div>
 
             {/* Google Map */}
-            <div className="w-full aspect-video rounded-xl overflow-hidden border">
+            <div className="w-full aspect-video rounded-xl overflow-hidden border shadow-md">
               {contactDetails && (
                 <iframe
                   src={contactDetails.map_url}
@@ -94,8 +117,8 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          {/* RIGHT SIDE — Contact Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
             <Input
               type="text"
               name="name"
@@ -103,7 +126,9 @@ export default function ContactPage() {
               value={form.name}
               onChange={handleChange}
               required
+              className="bg-white border border-gray-300 rounded-lg shadow-sm focus:border-[#1F7ACC] focus:ring-[#1F7ACC]"
             />
+
             <Input
               type="email"
               name="email"
@@ -111,21 +136,34 @@ export default function ContactPage() {
               value={form.email}
               onChange={handleChange}
               required
+              className="bg-white border border-gray-300 rounded-lg shadow-sm focus:border-[#1F7ACC] focus:ring-[#1F7ACC]"
             />
+
             <Textarea
               name="message"
               placeholder="Your Message"
               value={form.message}
               onChange={handleChange}
               required
-              className="h-32"
+              className="h-32 bg-white border border-gray-300 rounded-lg shadow-sm focus:border-[#1F7ACC] focus:ring-[#1F7ACC]"
             />
-            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={loading}>
+
+            <Button
+              type="submit"
+              className="w-full bg-[#0084f8] hover:bg-[#0044d6] text-white py-3 rounded-xl text-lg shadow-md transition-all"
+              disabled={loading}
+            >
               {loading ? "Sending..." : "Send Message"}
             </Button>
 
-            {success && <p className="text-green-600 text-center mt-2">Message sent successfully!</p>}
-            {error && <p className="text-red-600 text-center mt-2">{error}</p>}
+            {success && (
+              <p className="text-[#2CA58D] text-center font-medium">
+                ✓ Message sent successfully!
+              </p>
+            )}
+            {error && (
+              <p className="text-[#C26D00] text-center font-medium">{error}</p>
+            )}
           </form>
         </CardContent>
       </Card>

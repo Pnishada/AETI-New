@@ -1,9 +1,11 @@
 "use client";
 
 import { Link } from "wouter";
-import { GraduationCap, Phone, Mail, MapPin, Printer, ChevronDown } from "lucide-react";
+import { Phone, Mail, MapPin, Printer, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+
+import logoImg from "./assets/AETI_Logo.png"; // ✅ IMPORT LOGO
 
 export default function Footer() {
   const [open, setOpen] = useState(false);
@@ -14,26 +16,34 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-r from-[#7b1e1e] via-[#5a0f0f] to-[#8b1e1e] text-white w-full">
+    <footer className="bg-gradient-to-r from-blue-900 via-blue-500 to-blue-900 text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-14">
         <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12">
+          
           {/* Logo & Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                <GraduationCap className="text-[#8b1e1e] w-6 h-6" />
+              {/* Logo */}
+              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                <img
+                  src={logoImg}
+                  alt="AETI Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <span className="text-2xl font-bold">AETI</span>
+
+              <span className="text-2xl font-bold text-black">AETI</span>
             </div>
-            <p className="text-slate-100 text-sm leading-relaxed">
+
+            <p className="text-white/90 text-sm leading-relaxed">
               To be an institution of excellence in providing training in automobile and related trades.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg">Quick Links</h4>
-            <ul className="space-y-3 text-sm text-slate-200">
+            <h4 className="font-semibold mb-4 text-lg text-black">Quick Links</h4>
+            <ul className="space-y-3 text-sm text-white/90">
               <motion.li {...linkHover}><Link href="/">Home</Link></motion.li>
               <motion.li {...linkHover}><Link href="/about">Discover AETI</Link></motion.li>
 
@@ -41,14 +51,14 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => setOpen(!open)}
-                  className="flex items-center space-x-1 focus:outline-none"
+                  className="flex items-center space-x-1 text-white/90 focus:outline-none"
                 >
                   <span>Courses</span>
                   <motion.div
                     animate={{ rotate: open ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown className="w-4 h-4 opacity-70" />
+                    <ChevronDown className="w-4 h-4 opacity-80" />
                   </motion.div>
                 </button>
 
@@ -59,7 +69,7 @@ export default function Footer() {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="ml-4 mt-2 space-y-2 text-slate-300 text-xs overflow-hidden"
+                      className="ml-4 mt-2 space-y-2 text-white/80 text-xs overflow-hidden"
                     >
                       <li><Link href="/courses?type=Full-Time">Full-Time</Link></li>
                       <li><Link href="/courses?type=Part-Time">Part-Time</Link></li>
@@ -76,8 +86,8 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg">Services</h4>
-            <ul className="space-y-3 text-sm text-slate-200">
+            <h4 className="font-semibold mb-4 text-lg text-black">Services</h4>
+            <ul className="space-y-3 text-sm text-white/90">
               <motion.li {...linkHover}><Link href="/courses">Training Programs</Link></motion.li>
               <motion.li {...linkHover}><Link href="/download">Student Resources</Link></motion.li>
             </ul>
@@ -85,8 +95,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg">Contact</h4>
-            <ul className="space-y-3 text-sm text-slate-200">
+            <h4 className="font-semibold mb-4 text-lg text-black">Contact</h4>
+            <ul className="space-y-3 text-sm text-white/90">
               <motion.li {...linkHover} className="flex items-start">
                 <MapPin className="w-4 h-4 mr-2 mt-1" />
                 <span>
@@ -101,14 +111,17 @@ export default function Footer() {
                   </a>
                 </span>
               </motion.li>
+
               <motion.li {...linkHover} className="flex items-start">
                 <Phone className="w-4 h-4 mr-2 mt-1" />
                 <a href="tel:+94112244333">+94 11 224 4333</a>
               </motion.li>
+
               <motion.li {...linkHover} className="flex items-start">
                 <Mail className="w-4 h-4 mr-2 mt-1" />
                 <a href="mailto:info@aeti.lk">info@aeti.lk</a>
               </motion.li>
+
               <motion.li {...linkHover} className="flex items-start">
                 <Printer className="w-4 h-4 mr-2 mt-1" />
                 <a href="fax:+94112244333">+94 11 224 4333</a>
@@ -117,7 +130,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="text-center mt-12 text-sm text-slate-300">
+        <div className="text-center mt-12 text-sm text-white/90">
           &copy; {new Date().getFullYear()} AETI. All rights reserved.
         </div>
       </div>

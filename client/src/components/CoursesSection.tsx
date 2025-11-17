@@ -223,7 +223,7 @@ export default function CoursesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-red-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-blue-900 mb-4">
             Courses & Training Categories
           </h2>
           <p className="text-gray-700 max-w-2xl mx-auto">
@@ -238,7 +238,7 @@ export default function CoursesSection() {
             onClick={() => setActiveTab("Full-Time")}
             className={`px-6 py-2 rounded-l-lg font-semibold transition ${
               activeTab === "Full-Time"
-                ? "bg-red-700 text-white shadow-md"
+                ? "bg-blue-700 text-white shadow-md"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
@@ -248,7 +248,7 @@ export default function CoursesSection() {
             onClick={() => setActiveTab("Part-Time")}
             className={`px-6 py-2 rounded-r-lg font-semibold transition ${
               activeTab === "Part-Time"
-                ? "bg-red-700 text-white shadow-md"
+                ? "bg-blue-700 text-white shadow-md"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
@@ -277,14 +277,14 @@ export default function CoursesSection() {
                   } hover:-translate-y-3 hover:shadow-2xl`}
                 >
                   <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300 animate-bounce-slow">
-                    <IconComponent className="text-red-800 w-10 h-10" />
+                    <IconComponent className="text-blue-800 w-10 h-10" />
                   </div>
-                  <h3 className="font-bold text-red-800 mb-4 text-lg hover:text-red-900 transition-colors">
+                  <h3 className="font-bold text-blue-800 mb-4 text-lg hover:text-blue-900 transition-colors">
                     {course.title}
                   </h3>
                   <Button
                     variant="link"
-                    className="text-red-800 hover:text-red-900 font-medium transition-colors p-0"
+                    className="text-blue-800 hover:text-blue-900 font-medium transition-colors p-0"
                     onClick={() => {
                       setSelectedCourse(course);
                       setFormData((prev) => ({ ...prev, course: course.title }));
@@ -311,8 +311,8 @@ export default function CoursesSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-t-3xl" />
                 <div className="absolute bottom-6 left-6 flex flex-col gap-2 text-white">
-                  <div className="w-12 h-12 bg-red-700 rounded-xl flex items-center justify-center shadow-lg">
-                    {/* ✅ Fixed icon rendering */}
+                  <div className="w-12 h-12 bg-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+                    {/* Fixed icon rendering */}
                     <selectedCourse.icon className="w-6 h-6 text-white" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-bold">
@@ -348,7 +348,7 @@ export default function CoursesSection() {
                       setIsFormOpen(true);
                       setSelectedCourse(null);
                     }}
-                    className="bg-red-700 hover:bg-red-800 text-white rounded-lg px-6 py-2 shadow-md hover:shadow-lg transition"
+                    className="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-2 shadow-md hover:shadow-lg transition"
                   >
                     Enroll Now
                   </Button>
@@ -421,7 +421,7 @@ export default function CoursesSection() {
             <DialogFooter>
               <Button
                 type="submit"
-                className="bg-red-700 hover:bg-red-800 text-white"
+                className="bg-blue-700 hover:bg-blue-800 text-white"
               >
                 Submit Application
               </Button>

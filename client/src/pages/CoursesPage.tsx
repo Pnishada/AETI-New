@@ -81,7 +81,7 @@ export default function CoursesPage() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-12">
-      <h2 className="text-3xl font-extrabold text-red-900 text-center mb-8">
+      <h2 className="text-3xl font-extrabold text-blue-900 text-center mb-8">
         {activeTab === "All" ? "All Courses" : `${activeTab} Courses`}
       </h2>
 
@@ -100,7 +100,7 @@ export default function CoursesPage() {
             }}
             className={`px-6 py-2 font-semibold rounded-lg transition mx-2 ${
               activeTab === tab
-                ? "bg-red-700 text-white shadow-md"
+                ? "bg-blue-500 text-white shadow-md"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
@@ -116,7 +116,7 @@ export default function CoursesPage() {
           placeholder="Search courses..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
+          className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none"
         />
         <div className="w-full sm:w-auto">
           <label htmlFor="durationFilter" className="sr-only">
@@ -126,7 +126,7 @@ export default function CoursesPage() {
             id="durationFilter"
             value={durationFilter}
             onChange={(e) => setDurationFilter(e.target.value)}
-            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none w-full sm:w-auto"
+            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none w-full sm:w-auto"
           >
             {availableDurations.map((d) => (
               <option key={d} value={d}>

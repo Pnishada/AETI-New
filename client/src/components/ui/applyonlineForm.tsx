@@ -119,7 +119,7 @@ export default function ApplyForm({ onClose }: ApplyFormProps) {
           <DialogFooter>
             <Button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-500 text-white py-3 rounded-xl font-semibold"
+              className="w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-semibold"
             >
               Submit Application
             </Button>

@@ -61,7 +61,7 @@ export default function DownloadPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-[#8B1E1E] mb-3">Downloads</h1>
+          <h1 className="text-5xl font-bold text-blue-900 mb-3">Downloads</h1>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
             Access official forms, brochures, and documents for students and applicants. Click download to save files directly to your device.
           </p>
@@ -76,7 +76,7 @@ export default function DownloadPage() {
             >
               {/* Icon & Title */}
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-3 rounded-full bg-[#8B1E1E]/20 text-[#8B1E1E] group-hover:bg-[#8B1E1E]/30 transition-colors duration-300">
+                <div className="p-3 rounded-full bg-[#001f4e]/20 text-[#1e7b8b] group-hover:bg-[#001741]/30 transition-colors duration-300">
                   <Download className="w-6 h-6" />
                 </div>
                 <h2 className="text-lg font-semibold text-gray-900 truncate">{item.title}</h2>
@@ -88,7 +88,7 @@ export default function DownloadPage() {
               {/* Download Button */}
               <button
                 onClick={() => downloadFile(item.file)}
-                className="mt-auto w-full bg-gradient-to-r from-[#8B1E1E] to-[#6F1616] hover:from-[#6F1616] hover:to-[#5A1111] text-white px-4 py-3 rounded-xl shadow-md font-semibold flex items-center justify-center space-x-2 transition-all duration-300"
+                className="mt-auto w-full bg-gradient-to-r from-[#256091] to-[#4290cf] hover:from-[#1182c4] hover:to-[#0043d4] text-white px-4 py-3 rounded-xl shadow-md font-semibold flex items-center justify-center space-x-2 transition-all duration-300"
               >
                 <Download className="w-4 h-4" />
                 <span>Download</span>

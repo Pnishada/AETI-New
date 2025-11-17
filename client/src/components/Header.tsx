@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { GraduationCap, Menu, X, Search } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useLocation } from "wouter";
+
+// Import the logo
+import logoImg from "./assets/AETI_Logo.png"; // <-- Make sure the path is correct
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,7 +22,7 @@ export default function Header() {
     { name: "LMS", route: "/lms" },
     { name: "Contact Us", route: "/contact" },
     { name: "Staff", route: "/staff" },
-     { name: "Downloads", route: "/download" },
+    { name: "Downloads", route: "/download" },
   ];
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -34,13 +37,13 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#7b1e1e] via-[#5a0f0f] to-[#8b1e1e] text-white shadow-lg sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-blue-900 via-blue-500 to-blue-900 text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 hover:scale-105 transition-transform">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-shadow">
-              <GraduationCap className="text-[#8b1e1e] w-6 h-6" />
+            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-shadow overflow-hidden">
+              <img src={logoImg} alt="AETI Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-2xl md:text-3xl font-extrabold tracking-wide font-sans">AETI</span>
           </Link>

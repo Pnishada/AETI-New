@@ -63,9 +63,9 @@ export default function NewsHighlight() {
   return (
     <section
       id="news"
-      className="lg:sticky lg:top-24 bg-red-50 border border-red-200 p-6 rounded-xl shadow-lg"
+      className="lg:sticky lg:top-24 bg-blue-50 border border-blue-200 p-6 rounded-xl shadow-lg"
     >
-      <h3 className="text-2xl font-bold text-red-800 mb-6 text-center">
+      <h3 className="text-2xl font-bold text-blue-800 mb-6 text-center">
         News & Highlights
       </h3>
 
@@ -95,21 +95,21 @@ export default function NewsHighlight() {
 
               <div className="mt-2">
                 <Link href={item.link || `/news/${item.id}`}>
-                  <Button className="text-red-700 hover:text-white hover:bg-red-700 px-3 py-1 text-sm">
+                  <Button className="text-blue-700 hover:text-white hover:bg-blue-700 px-3 py-1 text-sm">
                     Read more
                   </Button>
                 </Link>
               </div>
             </div>
 
-            <div className="absolute inset-0 bg-gradient-to-tr from-red-50 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none rounded-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-50 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none rounded-xl"></div>
           </article>
         ))}
       </div>
 
       <div className="mt-6 text-center">
         <Link href="/news">
-          <Button className="bg-red-700 hover:bg-red-600 text-white px-6 py-2 rounded-lg">
+          <Button className="bg-blue-700 hover:bg-blue-600 text-white px-6 py-2 rounded-lg">
             All News
           </Button>
         </Link>

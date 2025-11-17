@@ -8,7 +8,7 @@ export default function NewsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl lg:text-4xl font-extrabold text-red-700 tracking-tight">
+          <h2 className="text-3xl lg:text-4xl font-extrabold text-blue-700 tracking-tight">
             Latest News & Announcements
           </h2>
           <p className="mt-3 text-slate-600 max-w-2xl mx-auto">
@@ -26,7 +26,7 @@ export default function NewsSection() {
               className="w-full h-48 object-cover"
             />
             <div className="p-6">
-              <div className="flex items-center text-sm text-red-600 font-medium mb-3">
+              <div className="flex items-center text-sm text-blue-600 font-medium mb-3">
                 <CalendarDays className="w-4 h-4 mr-1" />
                 September 10, 2025
               </div>
@@ -42,7 +42,7 @@ export default function NewsSection() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="mt-4 text-red-700 hover:text-red-800 hover:bg-red-50 flex items-center"
+                  className="mt-4 text-blue-700 hover:text-blue-800 hover:bg-red-50 flex items-center"
                 >
                   Read More <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
@@ -58,7 +58,7 @@ export default function NewsSection() {
               className="w-full h-48 object-cover"
             />
             <div className="p-6">
-              <div className="flex items-center text-sm text-red-600 font-medium mb-3">
+              <div className="flex items-center text-sm text-blue-600 font-medium mb-3">
                 <CalendarDays className="w-4 h-4 mr-1" />
                 September 05, 2025
               </div>
@@ -74,7 +74,7 @@ export default function NewsSection() {
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="mt-4 text-red-700 hover:text-red-800 hover:bg-red-50 flex items-center"
+                  className="mt-4 text-blue-700 hover:text-blue-800 hover:bg-red-50 flex items-center"
                 >
                   Read More <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
@@ -86,7 +86,7 @@ export default function NewsSection() {
         {/* More Button */}
         <div className="text-center mt-14">
           <Link href="/news">
-            <Button className="bg-red-700 text-white hover:bg-red-800 px-8 py-3 rounded-lg font-medium shadow">
+            <Button className="bg-blue-700 text-white hover:bg-blue-800 px-8 py-3 rounded-lg font-medium shadow">
               More News & Announcements
             </Button>
           </Link>
