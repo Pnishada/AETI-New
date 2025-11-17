@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Department  # Make sure this exists
-from .serializers import DepartmentSerializer  # Make sure this exists
+from .models import Department  
+from .serializers import DepartmentSerializer  
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()

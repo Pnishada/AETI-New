@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
-from .views import DownloadViewSet
+from .views import CourseViewSet
 
 router = DefaultRouter()
-router.register(r'', DownloadViewSet, basename='download')
+router.register(r'', CourseViewSet, basename='course')
 
 urlpatterns = router.urls

@@ -32,7 +32,7 @@ export default function Footer() {
                 />
               </div>
 
-              <span className="text-2xl font-bold text-black">AETI</span>
+              <span className="text-2xl font-bold text-gray-700">AETI</span>
             </div>
 
             <p className="text-white/90 text-sm leading-relaxed">
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg text-black">Quick Links</h4>
+            <h4 className="font-semibold mb-4 text-lg text-gray-700">Quick Links</h4>
             <ul className="space-y-3 text-sm text-white/90">
               <motion.li {...linkHover}><Link href="/">Home</Link></motion.li>
               <motion.li {...linkHover}><Link href="/about">Discover AETI</Link></motion.li>
@@ -86,7 +86,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg text-black">Services</h4>
+            <h4 className="font-semibold mb-4 text-lg text-gray-700">Services</h4>
             <ul className="space-y-3 text-sm text-white/90">
               <motion.li {...linkHover}><Link href="/courses">Training Programs</Link></motion.li>
               <motion.li {...linkHover}><Link href="/download">Student Resources</Link></motion.li>
@@ -95,7 +95,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-4 text-lg text-black">Contact</h4>
+            <h4 className="font-semibold mb-4 text-lg text-gray-700">Contact</h4>
             <ul className="space-y-3 text-sm text-white/90">
               <motion.li {...linkHover} className="flex items-start">
                 <MapPin className="w-4 h-4 mr-2 mt-1" />
@@ -132,6 +132,9 @@ export default function Footer() {
 
         <div className="text-center mt-12 text-sm text-white/90">
           &copy; {new Date().getFullYear()} AETI. All rights reserved.
+        </div>
+        <div className="text-center mt-3 text-white/90">
+           Powered By NAITA.
         </div>
       </div>
     </footer>
