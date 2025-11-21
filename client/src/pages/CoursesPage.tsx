@@ -5,11 +5,10 @@ import { useLocation } from "wouter";
 import CourseCard from "@/components/CourseCard";
 import EnrollFormDialog from "@/components/EnrollFormDialog";
 import CourseDetailsDialog from "@/components/CoursesDetailsDialog";
-import { Course, api } from "@/api/api"; 
-
+import { Course, api } from "@/api/api";
 
 export default function CoursesPage() {
-  const [location, setLocation] = useLocation();
+  const [location] = useLocation();
   const coursesRef = useRef<HTMLDivElement>(null);
 
   const [activeTab, setActiveTab] = useState<"All" | "Full-Time" | "Part-Time">("All");
@@ -32,11 +31,10 @@ export default function CoursesPage() {
     fetchCourses();
   }, []);
 
-  
+  // Handle query params for tab selection
   useEffect(() => {
     const queryParams = new URLSearchParams(location.split("?")[1]);
     const typeParam = queryParams.get("type");
-
     if (typeParam === "Full-Time" || typeParam === "Part-Time") {
       setActiveTab(typeParam);
       setTimeout(() => {
@@ -49,34 +47,20 @@ export default function CoursesPage() {
 
   // Filter courses based on activeTab, search, and duration
   const displayedCourses = useMemo(() => {
-    let filtered =
-      activeTab === "All"
-        ? courses
-        : courses.filter((c) => c.description?.includes(activeTab));
-
-    if (search.trim()) {
-      filtered = filtered.filter(
-        (c) =>
-          c.name.toLowerCase().includes(search.toLowerCase()) ||
-          c.description.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    if (durationFilter !== "All") {
-      filtered = filtered.filter((c) => c.duration === durationFilter);
-    }
-
-    return filtered;
+    return courses
+      .filter(course => activeTab === "All" || course.type === activeTab) // Tab filter
+      .filter(course =>
+        search.trim() === "" ||
+        course.title.toLowerCase().includes(search.toLowerCase()) ||
+        course.description.toLowerCase().includes(search.toLowerCase())
+      ) // Search filter
+      .filter(course => durationFilter === "All" || course.duration === durationFilter); // Duration filter
   }, [activeTab, search, durationFilter, courses]);
 
-  //  Available durations
+  // Available durations for filter
   const availableDurations = useMemo(() => {
-    const filteredCourses =
-      activeTab === "All"
-        ? courses
-        : courses.filter((c) => c.description?.includes(activeTab));
-
-    return ["All", ...Array.from(new Set(filteredCourses.map((c) => c.duration)))];
+    const filtered = courses.filter(course => activeTab === "All" || course.type === activeTab);
+    return ["All", ...Array.from(new Set(filtered.map(c => c.duration)))];
   }, [activeTab, courses]);
 
   return (
@@ -87,16 +71,12 @@ export default function CoursesPage() {
 
       {/* Tabs */}
       <div className="flex justify-center mb-8">
-        {["All", "Full-Time", "Part-Time"].map((tab) => (
+        {["All", "Full-Time", "Part-Time"].map(tab => (
           <button
             key={tab}
             onClick={() => {
               setActiveTab(tab as "All" | "Full-Time" | "Part-Time");
               setDurationFilter("All");
-              setLocation(`/courses?type=${tab}`);
-              setTimeout(() => {
-                coursesRef.current?.scrollIntoView({ behavior: "smooth" });
-              }, 200);
             }}
             className={`px-6 py-2 font-semibold rounded-lg transition mx-2 ${
               activeTab === tab
@@ -109,26 +89,24 @@ export default function CoursesPage() {
         ))}
       </div>
 
-      {/* Search + Filter */}
+      {/* Search + Duration Filter */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
         <input
           type="text"
           placeholder="Search courses..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={e => setSearch(e.target.value)}
           className="w-full sm:w-1/2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none"
         />
         <div className="w-full sm:w-auto">
-          <label htmlFor="durationFilter" className="sr-only">
-            Filter by duration
-          </label>
+          <label htmlFor="durationFilter" className="sr-only">Filter by duration</label>
           <select
             id="durationFilter"
             value={durationFilter}
-            onChange={(e) => setDurationFilter(e.target.value)}
+            onChange={e => setDurationFilter(e.target.value)}
             className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-600 focus:outline-none w-full sm:w-auto"
           >
-            {availableDurations.map((d) => (
+            {availableDurations.map(d => (
               <option key={d} value={d}>
                 {d === "All" ? "All Durations" : d}
               </option>
@@ -137,29 +115,29 @@ export default function CoursesPage() {
         </div>
       </div>
 
-      {/*  Courses Grid */}
+      {/* Courses Grid */}
       <div ref={coursesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {displayedCourses.map((course) => (
-          <CourseCard
-            key={course.id}
-            course={course}
-            onViewDetails={setSelectedCourse}
-          />
+        {displayedCourses.map(course => (
+          <CourseCard key={course.id} course={course} onViewDetails={setSelectedCourse} />
         ))}
+        {displayedCourses.length === 0 && (
+          <p className="text-gray-500 col-span-full text-center">No courses found.</p>
+        )}
       </div>
 
       {/* Dialogs */}
-      <CourseDetailsDialog
-        course={selectedCourse}
-        onClose={() => setSelectedCourse(null)}
-        onEnroll={(c) => {
-          setSelectedCourse(null);
-          setEnrollCourse(c);
-        }}
-      />
+     <CourseDetailsDialog
+      courseId={selectedCourse?.id || null} // pass the ID instead of the object
+      onClose={() => setSelectedCourse(null)}
+  onEnroll={c => {
+    setSelectedCourse(null);
+    setEnrollCourse(c);
+  }}
+/>
+
       {enrollCourse && (
         <EnrollFormDialog
-          courseTitle={enrollCourse.name}
+          courseTitle={enrollCourse.title}
           open={!!enrollCourse}
           onClose={() => setEnrollCourse(null)}
         />

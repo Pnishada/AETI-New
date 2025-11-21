@@ -1,82 +1,119 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Course, api, Department } from "@/api/api";
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Course } from "@/api/api";
+} from "./ui/dialog";
+import { Button } from "./ui/button";
+import { X } from "lucide-react";
 
 interface Props {
-  course: Course | null;
+  courseId: number | null;
   onClose: () => void;
   onEnroll: (course: Course) => void;
 }
 
-export default function CourseDetailsDialog({
-  course,
-  onClose,
-  onEnroll,
-}: Props) {
-  if (!course) return null;
+export default function CourseDetailsDialog({ courseId, onClose, onEnroll }: Props) {
+  const [course, setCourse] = useState<Course | null>(null);
+  const [department, setDepartment] = useState<Department | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const imageUrl = course.image
+  useEffect(() => {
+    if (!courseId) return;
+
+    const fetchCourseDetails = async () => {
+      try {
+        setLoading(true);
+        const courseData = await api.getCourseById(courseId);
+        setCourse(courseData);
+
+        if (courseData.department?.id) {
+          const deptData = await api.getDepartmentById(courseData.department.id);
+          setDepartment(deptData);
+        }
+      } catch (err) {
+        console.error("Failed to fetch course details:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourseDetails();
+  }, [courseId]);
+
+  if (!courseId) return null;
+
+  const imageUrl = course?.image
     ? course.image.startsWith("http")
       ? course.image
       : `http://127.0.0.1:8000${course.image}`
     : "/default-course.jpg";
 
   return (
-    <Dialog open={!!course} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-3xl p-0 overflow-hidden rounded-3xl shadow-2xl">
-        {/* Course Image */}
-        <div className="relative h-64 sm:h-80 w-full">
+    <Dialog open={!!courseId} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-3xl p-0 overflow-hidden rounded-2xl shadow-xl">
+        {/* Image & Close Button */}
+        <div className="relative w-full h-64 sm:h-72">
           <img
             src={imageUrl}
-            alt={course.name}
-            className="absolute inset-0 w-full h-full object-cover rounded-t-3xl"
+            alt={course?.title}
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent rounded-t-3xl" />
-
-          <div className="absolute bottom-6 left-6 flex flex-col gap-3 text-white">
-            <h2 className="text-2xl font-bold leading-tight">{course.name}</h2>
-            <p className="text-sm text-gray-200 max-w-md">
-              {course.description}
-            </p>
-          </div>
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 bg-white rounded-full p-2 shadow hover:bg-gray-100 transition flex items-center justify-center"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5 text-gray-700" />
+          </button>
         </div>
 
-        {/* Course Details */}
-        <div className="p-6 space-y-6">
-          <table className="w-full text-left border-collapse">
-            <tbody>
-              <tr className="border-b">
-                <th className="py-2 px-4 font-medium w-1/3 text-gray-700">
-                  Duration
-                </th>
-                <td className="py-2 px-4 text-gray-900">{course.duration}</td>
-              </tr>
-              <tr>
-                <th className="py-2 px-4 font-medium text-gray-700">
-                  Department ID
-                </th>
-                <td className="py-2 px-4 text-gray-900">
-                  {course.department || "N/A"}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Course Info */}
+        <div className="p-6 space-y-5 bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-gray-900">{course?.title}</DialogTitle>
+            <DialogDescription className="text-gray-600 mt-1 flex flex-wrap gap-2 text-sm">
+              <span className="font-medium">{course?.type}</span> 
+              <span>Duration: {course?.duration}</span>
+              {course?.fee && <span>Fee: ${course.fee}</span>}
+              {course?.method && <span>Method: {course.method}</span>}
+            </DialogDescription>
+          </DialogHeader>
 
-          <DialogFooter className="pt-4 flex justify-end">
+          {/* Department Info */}
+          {department && (
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <h3 className="text-lg font-semibold text-blue-900">{department.name}</h3>
+              {department.head && <p className="text-blue-700 mt-1">Head: {department.head}</p>}
+              {department.description && (
+                <p className="text-blue-800 mt-2 text-sm">{department.description}</p>
+              )}
+            </div>
+          )}
+
+          {/* Course Description */}
+          <div>
+            <h4 className="text-lg font-semibold text-gray-800">Course Description</h4>
+            <p className="text-gray-700 mt-2">{course?.description}</p>
+          </div>
+
+          {/* Enroll Button */}
+          <div className="flex justify-end gap-3 mt-6">
+            <Button variant="outline" onClick={onClose}>
+              Close
+            </Button>
             <Button
-              onClick={() => onEnroll(course)}
-              className="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-2 shadow-md hover:shadow-lg transition-all duration-200"
+              onClick={() => course && onEnroll(course)}
+              className="bg-blue-700 hover:bg-blue-800 text-white"
             >
               Enroll Now
             </Button>
-          </DialogFooter>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

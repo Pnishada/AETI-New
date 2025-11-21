@@ -52,12 +52,22 @@ export interface AcademicItem {
 
 export interface Course {
   id: number;
-  name: string;
+  title: string;
+  type: "Full-Time" | "Part-Time";
   description: string;
   duration: string;
-  department?: number;
+  fee?: number; 
+  method?: string; 
+  department?: {
+    id: number;
+    name: string;
+    description?: string;
+  };
   image?: string;
+  created_at: string;
 }
+
+
 
 export interface Department {
   id: number;
