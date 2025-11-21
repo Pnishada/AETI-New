@@ -34,7 +34,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gradient-to-r from-[#7b1e1e] via-[#5a0f0f] to-[#8b1e1e] text-white shadow-lg sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-blue-900 via-blue-500 to-blue-900 text-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

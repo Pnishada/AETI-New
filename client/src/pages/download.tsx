@@ -61,7 +61,7 @@ export default function DownloadPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-[#8B1E1E] mb-3">Downloads</h1>
+          <h1 className="text-5xl font-bold text-blue-700 mb-3">Downloads</h1>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
             Access official forms, brochures, and documents for students and applicants. Click download to save files directly to your device.
           </p>
@@ -76,7 +76,7 @@ export default function DownloadPage() {
             >
               {/* Icon & Title */}
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-3 rounded-full bg-[#8B1E1E]/20 text-[#8B1E1E] group-hover:bg-[#8B1E1E]/30 transition-colors duration-300">
+                <div className="p-3 rounded-full bg-[#1e378b]/10 text-[#005bbc] group-hover:bg-[#1e418b]/30 transition-colors duration-300">
                   <Download className="w-6 h-6" />
                 </div>
                 <h2 className="text-lg font-semibold text-gray-900 truncate">{item.title}</h2>
@@ -88,7 +88,7 @@ export default function DownloadPage() {
               {/* Download Button */}
               <button
                 onClick={() => downloadFile(item.file)}
-                className="mt-auto w-full bg-gradient-to-r from-[#8B1E1E] to-[#6F1616] hover:from-[#6F1616] hover:to-[#5A1111] text-white px-4 py-3 rounded-xl shadow-md font-semibold flex items-center justify-center space-x-2 transition-all duration-300"
+                className="mt-auto w-full bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-900 hover:to-blue-950 text-white px-4 py-3 rounded-xl shadow-md font-semibold flex items-center justify-center space-x-2 transition-all duration-300"
               >
                 <Download className="w-4 h-4" />
                 <span>Download</span>
@@ -100,7 +100,7 @@ export default function DownloadPage() {
               </p>
 
               {/* Subtle hover overlay */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#8B1E1E]/10 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#054cf1]/10 to-transparent opacity-0 group-hover:opacity-30 transition-opacity pointer-events-none"></div>
             </div>
           ))}
         </div>

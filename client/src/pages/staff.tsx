@@ -35,29 +35,24 @@ export default function StaffPage() {
     fetchStaff();
   }, []);
 
-  // Intersection Observer to track active section
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries) =>
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActivePosition(entry.target.getAttribute("data-position") || "");
           }
-        });
-      },
+        }),
       { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
     );
 
-    Object.values(groupRefs.current).forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
+    Object.values(groupRefs.current).forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
   }, [staffMembers]);
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center bg-blue-100">
         <p className="text-gray-700 text-lg">Loading staff...</p>
       </div>
     );
@@ -65,7 +60,7 @@ export default function StaffPage() {
 
   if (!staffMembers.length) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center bg-blue-100">
         <p className="text-gray-700 text-lg">No staff members found.</p>
       </div>
     );
@@ -92,28 +87,27 @@ export default function StaffPage() {
   ];
 
   const badgeColors: Record<string, string> = {
-    "Chairman": "from-red-700 to-red-500",
-    "Vice Chairman": "from-red-600 to-red-400",
-    "Director General": "from-orange-600 to-orange-400",
-    "Assistant Director": "from-orange-500 to-orange-300",
-    "Registrar": "from-amber-500 to-amber-300",
-    "Head of Department": "from-yellow-500 to-yellow-300",
-    "Senior Lecturer": "from-green-600 to-green-400",
-    "Lecturer": "from-blue-600 to-blue-400",
-    "Instructor": "from-indigo-600 to-indigo-400",
-    "Staff": "from-gray-600 to-gray-400",
+    Chairman: "from-blue-900 to-blue-700",
+    "Vice Chairman": "from-blue-800 to-blue-600",
+    "Director General": "from-blue-700 to-blue-500",
+    "Assistant Director": "from-blue-700 to-blue-500",
+    Registrar: "from-blue-600 to-blue-400",
+    "Head of Department": "from-blue-600 to-blue-400",
+    "Senior Lecturer": "from-blue-500 to-blue-300",
+    Lecturer: "from-blue-500 to-blue-300",
+    Instructor: "from-blue-400 to-blue-300",
+    Staff: "from-blue-400 to-blue-300",
   };
 
-  const scrollToGroup = (position: string) => {
-    groupRefs.current[position]?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+  const scrollToGroup = (position: string) =>
+    groupRefs.current[position]?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Hero Section */}
       <section className="relative h-72 md:h-96 flex items-center justify-center text-center text-white">
         <div className="absolute inset-0 bg-[url('/hero-staff.jpg')] bg-cover bg-center opacity-40"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/60 to-red-700/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-700 via-blue-300 to-blue-700"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,13 +118,13 @@ export default function StaffPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg tracking-tight">
             Our Staff
           </h1>
-          <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-red-100">
+          <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto text-blue-100">
             Meet the professionals dedicated to excellence at AETI.
           </p>
         </motion.div>
       </section>
 
-      {/* Sticky Horizontal Position Bar */}
+      {/* Horizontal Tab Bar */}
       <div className="sticky top-0 z-20 bg-gray-50 shadow-sm overflow-x-auto scrollbar-hide">
         <div className="flex gap-4 px-6 py-3">
           {order.map((position) =>
@@ -139,10 +133,10 @@ export default function StaffPage() {
                 key={position}
                 onClick={() => scrollToGroup(position)}
                 whileHover={{ scale: 1.05 }}
-                className={`flex-shrink-0 px-5 py-2 rounded-full font-semibold shadow-lg transition ${
+                className={`flex-shrink-0 px-5 py-2 rounded-full font-semibold transition shadow-md ${
                   activePosition === position
                     ? `bg-gradient-to-r ${badgeColors[position]} text-white`
-                    : "bg-gray-200 text-gray-800"
+                    : "bg-white text-blue-800 border border-blue-600 hover:bg-blue-600 hover:text-white"
                 }`}
               >
                 {position}
@@ -161,13 +155,12 @@ export default function StaffPage() {
               ref={(el) => (groupRefs.current[position] = el)}
               data-position={position}
             >
-              {/* Redesigned Position Header */}
               <div className="flex justify-center mb-12">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className={`px-8 py-3 rounded-3xl font-bold text-2xl text-white shadow-lg bg-gradient-to-r ${badgeColors[position]} transform hover:scale-105 transition`}
+                  className={`px-8 py-3 rounded-3xl font-bold text-2xl text-white shadow-xl bg-gradient-to-r ${badgeColors[position]} hover:scale-105 transition`}
                 >
                   {position}
                 </motion.div>
@@ -185,9 +178,8 @@ export default function StaffPage() {
                       transition={{ duration: 0.5, delay: i * 0.1 }}
                       className="bg-white rounded-3xl relative shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
                     >
-                      {/* Image */}
                       <div className="relative pt-8 pb-4 flex flex-col items-center">
-                        <div className="w-32 h-32 rounded-full border-4 border-red-600 shadow-lg overflow-hidden">
+                        <div className="w-32 h-32 rounded-full border-4 border-blue-600 shadow-lg overflow-hidden">
                           {staff.image ? (
                             <img
                               src={staff.image}
@@ -201,40 +193,39 @@ export default function StaffPage() {
                           )}
                         </div>
 
-                        {/* Social Links */}
+                        {/* Social Icons - With ARIA Labels */}
                         <div className="absolute top-4 right-4 flex flex-col gap-3 opacity-0 group-hover:opacity-100 transition">
                           {links.facebook && (
                             <a
                               href={links.facebook}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="Visit Facebook profile"
-                              aria-label="Visit Facebook profile"
-                              className="p-2 bg-red-600 text-white rounded-full shadow hover:bg-red-500"
+                              aria-label={`${staff.name} Facebook profile`}
+                              className="p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-500"
                             >
                               <FaFacebookF />
                             </a>
                           )}
+
                           {links.twitter && (
                             <a
                               href={links.twitter}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="Visit Twitter profile"
-                              aria-label="Visit Twitter profile"
-                              className="p-2 bg-red-500 text-white rounded-full shadow hover:bg-red-400"
+                              aria-label={`${staff.name} Twitter profile`}
+                              className="p-2 bg-blue-500 text-white rounded-full shadow hover:bg-blue-400"
                             >
                               <FaTwitter />
                             </a>
                           )}
+
                           {links.linkedin && (
                             <a
                               href={links.linkedin}
                               target="_blank"
                               rel="noopener noreferrer"
-                              title="Visit LinkedIn profile"
-                              aria-label="Visit LinkedIn profile"
-                              className="p-2 bg-red-700 text-white rounded-full shadow hover:bg-red-600"
+                              aria-label={`${staff.name} LinkedIn profile`}
+                              className="p-2 bg-blue-700 text-white rounded-full shadow hover:bg-blue-600"
                             >
                               <FaLinkedinIn />
                             </a>
@@ -242,14 +233,13 @@ export default function StaffPage() {
                         </div>
                       </div>
 
-                      {/* Staff Info */}
                       <div className="text-center px-6 pb-8 space-y-2">
                         <h3 className="text-xl font-semibold text-gray-900">
                           {staff.name}
                         </h3>
 
                         <div className="flex justify-center">
-                          <span className="px-4 py-1 rounded-full text-sm bg-gray-100 text-red-700 font-semibold border border-red-200">
+                          <span className="px-4 py-1 rounded-full text-sm bg-blue-100 text-blue-700 font-semibold border border-blue-200">
                             {staff.position}
                           </span>
                         </div>

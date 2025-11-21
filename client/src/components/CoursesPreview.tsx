@@ -54,7 +54,7 @@ export default function CoursesPreview() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-red-900 mb-4">
+          <h2 className="text-4xl font-extrabold text-blue-900 mb-4">
             Explore Our Courses
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -68,7 +68,7 @@ export default function CoursesPreview() {
         {loading && (
           <p className="text-center text-gray-500 text-lg">Loading courses...</p>
         )}
-        {error && <p className="text-center text-red-600 text-lg">{error}</p>}
+        {error && <p className="text-center text-blue-600 text-lg">{error}</p>}
 
         {/* Category Cards */}
         {!loading && !error && (
@@ -78,10 +78,10 @@ export default function CoursesPreview() {
               className="relative bg-white rounded-3xl shadow-lg border border-gray-200 p-8 cursor-pointer overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-2xl group"
               onClick={() => goToCourses("Full-Time")}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-red-50 via-transparent opacity-0 group-hover:opacity-30 transition-opacity rounded-3xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-50 via-transparent opacity-0 group-hover:opacity-30 transition-opacity rounded-3xl"></div>
               <div className="relative z-10 flex flex-col justify-between h-full">
                 <div>
-                  <h3 className="text-2xl font-bold text-red-800 mb-4">
+                  <h3 className="text-2xl font-bold text-blue-800 mb-4">
                     Full-Time Courses
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -119,7 +119,7 @@ export default function CoursesPreview() {
                     )}
                   </div>
                 </div>
-                <div className="mt-6 text-red-700 font-semibold hover:underline">
+                <div className="mt-6 text-blue-700 font-semibold hover:underline">
                   See All Full-Time Courses →
                 </div>
               </div>
@@ -133,7 +133,7 @@ export default function CoursesPreview() {
               <div className="absolute inset-0 bg-gradient-to-t from-red-50 via-transparent opacity-0 group-hover:opacity-30 transition-opacity rounded-3xl"></div>
               <div className="relative z-10 flex flex-col justify-between h-full">
                 <div>
-                  <h3 className="text-2xl font-bold text-red-800 mb-4">
+                  <h3 className="text-2xl font-bold text-blue-800 mb-4">
                     Part-Time Courses
                   </h3>
                   <p className="text-gray-600 mb-6">
@@ -171,7 +171,7 @@ export default function CoursesPreview() {
                     )}
                   </div>
                 </div>
-                <div className="mt-6 text-red-700 font-semibold hover:underline">
+                <div className="mt-6 text-blue-700 font-semibold hover:underline">
                   See All Part-Time Courses →
                 </div>
               </div>

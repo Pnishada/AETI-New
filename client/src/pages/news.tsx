@@ -88,7 +88,7 @@ export default function NewsPage() {
                   href={featured.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block bg-[#B22222] px-5 py-2 rounded-full hover:bg-[#8B0000] transition"
+                  className="inline-block bg-[#225cb2] px-5 py-2 rounded-full hover:bg-[#8B0000] transition"
                 >
                   Read More
                 </a>
@@ -110,7 +110,7 @@ export default function NewsPage() {
                   />
                 )}
                 <div className="p-3">
-                  <h3 className="text-lg font-semibold hover:text-[#B22222]">
+                  <h3 className="text-lg font-semibold hover:text-[#2259b2]">
                     {item.link ? (
                       <a href={item.link} target="_blank" rel="noopener noreferrer">
                         {item.title}
@@ -145,7 +145,7 @@ export default function NewsPage() {
                   />
                 )}
                 <div className="p-4">
-                  <h3 className="text-lg font-semibold mb-2 hover:text-[#B22222]">
+                  <h3 className="text-lg font-semibold mb-2 hover:text-[#0863ff]">
                     {item.link ? (
                       <a href={item.link} target="_blank" rel="noopener noreferrer">
                         {item.title}

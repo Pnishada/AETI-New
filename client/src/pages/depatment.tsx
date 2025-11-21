@@ -58,7 +58,7 @@ export default function Departments() {
                       </p>
                     </div>
                     <Button
-                      className="bg-red-600 hover:bg-red-700 text-white"
+                      className="bg-blue-600 hover:bg-blue-700 text-white"
                       onClick={() => setSelectedDept(dept)}
                     >
                       View Details
@@ -107,7 +107,7 @@ export default function Departments() {
                       </p>
                     </div>
                     <Button
-                      className="bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto"
+                      className="bg-blue-600 hover:bg-blue-700 text-white w-full sm:w-auto"
                       onClick={() => setSelectedDept(null)}
                     >
                       Close

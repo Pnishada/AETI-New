@@ -76,7 +76,7 @@ export default function ContactPage() {
               <p className="text-gray-700">{contactDetails ? contactDetails.phone : "Loading..."}</p>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin className="text-red-600" />
+              <MapPin className="text-blue-600" />
               <p className="text-gray-700">{contactDetails ? contactDetails.address : "Loading..."}</p>
             </div>
 
@@ -125,7 +125,7 @@ export default function ContactPage() {
             </Button>
 
             {success && <p className="text-green-600 text-center mt-2">Message sent successfully!</p>}
-            {error && <p className="text-red-600 text-center mt-2">{error}</p>}
+            {error && <p className="text-blue-600 text-center mt-2">{error}</p>}
           </form>
         </CardContent>
       </Card>

@@ -35,7 +35,7 @@ export default function CourseCard({ course, onViewDetails }: Props) {
         </p>
 
         <Button
-          className="w-full bg-red-700 hover:bg-red-800 text-white rounded-xl"
+          className="w-full bg-blue-700 hover:bg-blue-800 text-white rounded-xl"
           onClick={() => onViewDetails?.(course)}
         >
           View Details

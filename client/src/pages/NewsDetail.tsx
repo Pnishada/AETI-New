@@ -18,7 +18,7 @@ export default function NewsDetail() {
           News Not Found
         </motion.h2>
         <Link href="/news">
-          <Button className="bg-red-700 hover:bg-red-500 text-white px-8 py-3 rounded-full shadow-lg transition-all">
+          <Button className="bg-blue-700 hover:bg-blue-500 text-white px-8 py-3 rounded-full shadow-lg transition-all">
             Back to News
           </Button>
         </Link>
@@ -46,7 +46,7 @@ export default function NewsDetail() {
 
         <div className="p-10">
           {/* Title */}
-          <h1 className="text-4xl font-bold text-red-700 mb-4">{newsItem.title}</h1>
+          <h1 className="text-4xl font-bold text-blue-700 mb-4">{newsItem.title}</h1>
 
           {/* Closing Date */}
           {newsItem.closingDate && (
@@ -61,7 +61,7 @@ export default function NewsDetail() {
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-4">
             <Link href="/news">
-              <Button className="bg-red-700 hover:bg-red-500 text-white px-6 py-3 rounded-full shadow-lg transition-all">
+              <Button className="bg-blue-700 hover:bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg transition-all">
                 Back to News
               </Button>
             </Link>

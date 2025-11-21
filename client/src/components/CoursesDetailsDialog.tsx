@@ -72,7 +72,7 @@ export default function CourseDetailsDialog({
           <DialogFooter className="pt-4 flex justify-end">
             <Button
               onClick={() => onEnroll(course)}
-              className="bg-red-700 hover:bg-red-800 text-white rounded-lg px-6 py-2 shadow-md hover:shadow-lg transition-all duration-200"
+              className="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-6 py-2 shadow-md hover:shadow-lg transition-all duration-200"
             >
               Enroll Now
             </Button>

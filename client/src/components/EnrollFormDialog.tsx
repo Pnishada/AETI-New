@@ -70,7 +70,7 @@ export default function EnrollFormDialog({ courseTitle, open, onClose }: Props) 
             <Textarea id="message" value={formData.message} onChange={handleChange} />
           </div>
           <DialogFooter>
-            <Button type="submit" className="bg-red-700 hover:bg-red-800 text-white">
+            <Button type="submit" className="bg-blue-700 hover:bg-blue-800 text-white">
               Submit Application
             </Button>
           </DialogFooter>

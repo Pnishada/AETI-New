@@ -5,7 +5,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="py-16 lg:py-24 bg-gradient-to-b from-red-50 to-white"
+      className="py-16 lg:py-24 bg-gradient-to-b from-blue-50 to-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -22,7 +22,7 @@ export default function AboutSection() {
           {/* Right Content */}
           <div className="order-1 lg:order-2 space-y-6">
             <h2
-              className="text-3xl lg:text-4xl font-extrabold text-red-800 tracking-tight"
+              className="text-3xl lg:text-4xl font-extrabold text-blue-800 tracking-tight"
               data-testid="text-about-title"
             >
               Discover AETI
@@ -43,7 +43,7 @@ In 2017, AETI was relocated with the support of Japan International Co-operation
 
             <Link href="/about">
               <Button
-                className="bg-red-700 hover:bg-red-500 text-white px-8 py-3 rounded-lg font-semibold shadow-md transition-colors"
+                className="bg-blue-700 hover:bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold shadow-md transition-colors"
                 data-testid="button-learn-more"
               >
                 Learn More

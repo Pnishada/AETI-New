@@ -102,7 +102,7 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-800 via-red-700 to-red-900 text-white py-24">
+      <section className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-800 text-white py-24">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg animate-fade-in">
             Explore Our Resources
@@ -123,8 +123,8 @@ export default function Gallery() {
               aria-label={`Switch to ${tab}`}
               className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 transform ${
                 activeTab === tab
-                  ? "bg-gradient-to-r from-red-600 to-red-800 text-white shadow-lg scale-105"
-                  : "bg-white text-red-800 border border-red-600 hover:bg-red-600 hover:text-white hover:scale-105"
+                  ? "bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg scale-105"
+                  : "bg-white text-blue-800 border border-blue-600 hover:bg-blue-600 hover:text-white hover:scale-105"
               }`}
             >
               {tab}
@@ -190,7 +190,7 @@ export default function Gallery() {
                   {item.file && (
                     <button
                       onClick={() => downloadFile(item.file)}
-                      className="mt-auto inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-red-800 text-white px-4 py-2 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                      className="mt-auto inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white px-4 py-2 rounded-full font-semibold shadow-md hover:shadow-lg transition-all duration-300"
                     >
                       <FaFilePdf /> Download Document
                     </button>
